@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='org.xwiki.otf.OTFClient' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/OTFClient/greet" class="org.xwiki.otf.server.GreetingServiceImpl" />
+
+</module>

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	 xmlns="http://maven.apache.org/POM/4.0.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.aqufi</groupId>
+    <artifactId>maven-gwt-skeleton</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>  
+  <artifactId>maven-gwt-skeleton-war</artifactId>
+  <packaging>war</packaging>
+
+  <name>Maven GWT Skeleton - Web application</name>
+
+  <properties>
+    <gwt.style>OBF</gwt.style>
+    <gwt.module>org.aqufi.GWTAppClient</gwt.module>
+    <gwt.runTarget>GWTAppClient.html</gwt.runTarget>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.aqufi</groupId>
+      <artifactId>maven-gwt-skeleton-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aqufi</groupId>
+      <artifactId>maven-gwt-skeleton-shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- Include source packages for JS compilation -->
+    <dependency>
+      <groupId>org.aqufi</groupId>
+      <artifactId>maven-gwt-skeleton-shared</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.aqufi</groupId>
+      <artifactId>maven-gwt-skeleton-client</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- Include source packages for JS compilation -->
+    <dependency>
+      <groupId>org.aqufi</groupId>
+      <artifactId>maven-gwt-skeleton-client</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>     
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <classifier>sources</classifier>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies> 
+  
+  <build>
+    <!--
+	    This is used to remove the warning "Your POM <build><outputdirectory> does not match your hosted webapp WEB-INF/classes folder for GWT Hosted browser to see your classes."
+    -->
+    <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <configuration>
+          <module>${gwt.module}</module>
+          <style>${gwt.style}</style>
+          <runTarget>${gwt.runTarget}</runTarget>
+          <disableCastChecking>true</disableCastChecking>
+          <disableClassMetadata>true</disableClassMetadata>          
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>        
+  </build>
+</project>
