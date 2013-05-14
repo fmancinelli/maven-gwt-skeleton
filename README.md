@@ -25,9 +25,12 @@ To import the project do the following:
 * For every GWT project, setup GWT in `Project->Properties->Google->Web Toolkit` and `Project->Properties->Google->Web Application` (where applicable)
 
 * For every project that has i18n messages, create a Run Configuration for generating i18n `Messages` classes. Use the following parameters:
-** Main class: `com.google.gwt.i18n.tools.I18NSync`
-** Program arguments: `-out ${workspace_loc:maven-gwt-skeleton-client}/src/main/java org.aqufi.client.Messages -createMessages`
-** Add the `gwt-dev.jar` in the class path (you can find it in the bundled GWT SDK in Eclipse's `plugins` directory)
+
+    * Main class: `com.google.gwt.i18n.tools.I18NSync`
+
+    * Program arguments: `-out ${workspace_loc:maven-gwt-skeleton-client}/src/main/java org.aqufi.client.Messages -createMessages`
+
+    * Add the `gwt-dev.jar` in the class path (you can find it in the bundled GWT SDK in Eclipse's `plugins` directory)
 
 * In the Web Application project (e.g. `maven-gwt-skeleton-war`) add the other GWT projects as referenced projects in `Project->Properties->Build Path`
 
