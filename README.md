@@ -10,7 +10,28 @@ The application is the one generated automatically by the Eclipse GWT Plugin whe
     cd maven-gwt-skeleton
     mvn gwt:run
 
-You should also be able to import all of this back in an Eclipse environment and work from there using the Google GWT Plugin.
+## Importing the project into Eclipse
+
+The prerequisite is that you have an Eclipse JEE installation with [M2Eclipse](http://eclipse.org/m2e/) and the [GWT Plugin](https://developers.google.com/eclipse/)
+
+To import the project do the following:
+
+* Import all the Maven project using `File->Import->Existing Maven projects...`. You can choose the top-level POM for importing everything.
+
+* For every project, go to `Project->Properties->Build Path` and for every source folder make sure that the `Excluded` attribute is set to none. M2Eclipse sets this attribute to `**` by default on the `resources` paths, making the files there not visible in the classpath
+
+* Make sure to add the `target-eclipse/generated-sources/gwt` as a source folder for the projects that automatically generates source code files. This is true, for example, for the `maven-gwt-skeleton-client` project.
+
+* For every GWT project, setup GWT in `Project->Properties->Google->Web Toolkit` and `Project->Properties->Google->Web Application` (where applicable)
+
+* For every project that has i18n messages, create a Run Configuration for generating i18n `Messages` classes. Use the following parameters:
+** Main class: `com.google.gwt.i18n.tools.I18NSync`
+** Program arguments: `-out ${workspace_loc:maven-gwt-skeleton-client}/src/main/java org.aqufi.client.Messages -createMessages`
+** Add the `gwt-dev.jar` in the class path (you can find it in the bundled GWT SDK in Eclipse's `plugins` directory)
+
+* In the Web Application project (e.g. `maven-gwt-skeleton-war`) add the other GWT projects as referenced projects in `Project->Properties->Build Path`
+
+* Create a new `Web Application` Run Configuration, and to the default `VM Parameters` line append the GWT modules you want to host (e.g., `org.aqufi.GWTApp` and `org.aqufi.GWTAppClient`)
 
 Enjoy.
 
